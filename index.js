@@ -32,5 +32,13 @@ const server = app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
 
+process.on('SIGTERM', () => {
+  console.info('SIGTERM signal received.');
+  console.log('Closing http server.');
+  server.close(() => {
+    console.log('Http server closed.');
+    process.exit(0);
+  });
+});
 // Do not change this line
 module.exports = { app, server };
