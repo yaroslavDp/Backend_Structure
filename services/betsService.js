@@ -35,7 +35,7 @@ class BetsService {
         const [event] = await eventsRepository.getById('event', myBet.event_id);
         if(!event) {
             const err = new Error('Event not found');
-            err.code = 400
+            err.code = 404
             throw err;
           }
         const [odds] = await eventsRepository.getById('odds', event.odds_id);
